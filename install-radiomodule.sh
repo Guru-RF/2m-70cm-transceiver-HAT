@@ -46,6 +46,9 @@ say "Disabling Serial Console"
 run "perl -i -pe 's/console=serial0.115200//g'  /boot/cmdline.txt"
 say "Enabling UART"
 run "grep -q 'enable_uart=1' /boot/config.txt || echo 'enable_uart=1' >> /boot/config.txt"
+say "Enabling 2nd UART"
+run "grep -q 'dtoverlay=uart4' /boot/config.txt || echo 'dtoverlay=uart4' >> /boot/config.txt"
+
 say "Disabling serial getty"
 run 'systemctl disable serial-getty@ttyS0.service'
 
