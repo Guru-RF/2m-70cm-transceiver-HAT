@@ -27,11 +27,11 @@ raspi-gpio set 7 op dh
 echo "Test RF VHF"
 raspi-gpio set 16 dl
 aplay gettysburg10.wav
-raspi-gpio set 16 dl
+raspi-gpio set 16 dh
 
 # Test RF VHF
 echo "Test RF UHF"
 raspi-gpio set 7 dl
 aplay gettysburg10.wav
-raspi-gpio set 7 dl
+raspi-gpio set 7 dh
 
