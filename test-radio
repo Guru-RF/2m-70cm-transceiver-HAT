@@ -1,14 +1,31 @@
 #!/bin/bash
 
-echo "RX module"
+echo "VHF module"
+sa818 volume  --level 1
+sa818 radio --frequency 145.025 --squelch 4
+#sa818 radio --frequency 145.025 --ctcss 94.8,94.8
+sa818 filters --emphasis no --highpass no --lowpass no
+
+echo "UHF module"
 sa818 --port /dev/ttyAMA1 volume --level 1
 sa818 --port /dev/ttyAMA1 radio --frequency 430.025 --squelch 4
 #sa818 --port /dev/ttyAMA1 radio --frequency 145.025 --ctcss 94.8,94.8
 sa818 --port /dev/ttyAMA1 filters --emphasis no --highpass no --lowpass no
 
+# PTT VHF
+raspi-gpio set 16 op dh
 
-echo "TX module"
-sa818 volume  --level 1
-sa818 radio --frequency 145.025 --squelch 4
-#sa818 radio --frequency 145.025 --ctcss 94.8,94.8
-sa818 filters --emphasis no --highpass no --lowpass no
+# PTT UHF
+raspi-gpio set 7 op dh
+
+# Test RF VHF
+echo "Test RF VHF"
+raspi-gpio set 16 dl
+aplay gettysburg10.wav
+raspi-gpio set 16 dl
+
+# Test RF VHF
+echo "Test RF UHF"
+raspi-gpio set 7 dl
+aplay gettysburg10.wav
+raspi-gpio set 7 dl
