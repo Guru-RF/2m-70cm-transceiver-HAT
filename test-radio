@@ -1,5 +1,10 @@
 #!/bin/bash
 
+# audio to radio Module
+amixer set 'Headphone' 77%
+# audio from radio Module
+amixer set 'Capture' 18%
+
 echo "VHF module"
 sa818 volume  --level 1
 sa818 radio --frequency 145.025 --squelch 4
@@ -29,3 +34,4 @@ echo "Test RF UHF"
 raspi-gpio set 7 dl
 aplay gettysburg10.wav
 raspi-gpio set 7 dl
+
